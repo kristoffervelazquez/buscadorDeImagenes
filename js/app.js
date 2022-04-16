@@ -76,12 +76,12 @@ function mostrarImagenes(imagenes) {
     limpiarHTML();
     // Iterar sobre el resultado de imagenes
     imagenes.forEach((imagen) => {
-        const { previewURL, likes, views, largeImageURL } = imagen;
+        const { webformatURL, likes, views, largeImageURL } = imagen;
 
         resultado.innerHTML += `
             <div class="w-1/2 md:w-1/3 lg:1/4 p-3 mb-4">
                 <div class="bg-white">
-                    <img class="w-full" src="${previewURL}">
+                    <img class="w-full" src="${webformatURL}">
                     <div class="p-4">
                         <p class="font-bold"> ${likes} <span class="font-light"> Me gusta</span></p>
                         <p class="font-bold"> ${views} <span class="font-light"> Vistas</span></p>
