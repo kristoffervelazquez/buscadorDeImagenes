@@ -50,8 +50,8 @@ function buscarImagenes() {
 
     const key = '26789757-66badd75c78069a5bd8638fe1';
     const url = `https://pixabay.com/api/?key=${key}&q=${terminoBusqueda}&image_type=photo&per_page=${registrosPorPagina}&page=${paginaActual}`;
-    
-    
+
+    cargarSpinner();
     fetch(url)
         .then((response) => response.json())
         .then((responseData) => {
@@ -72,7 +72,7 @@ function calcularPaginas(total) {
 }
 
 function mostrarImagenes(imagenes) {
-    
+
     limpiarHTML();
     // Iterar sobre el resultado de imagenes
     imagenes.forEach((imagen) => {
@@ -104,7 +104,7 @@ function mostrarImagenes(imagenes) {
 function imprmirPaginador() {
     iterador = crearPaginador(totalPaginas);
 
-    while (true) {
+    while (totalPaginas > 0) {
         const { value, done } = iterador.next();
         if (done) return;
         // Caso contrario, genera un boton por cada elemento en el generador
@@ -130,4 +130,22 @@ function limpiarHTML() {
         paginacionDiv.removeChild(paginacionDiv.firstChild);
 
     }
+}
+
+function cargarSpinner() {
+    limpiarHTML();
+    const spinner = document.createElement('div');
+    spinner.classList.add('sk-chase');
+    spinner.innerHTML = `    
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+    
+    `
+    
+    resultado.appendChild(spinner);
+
 }
